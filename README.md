@@ -26,11 +26,11 @@ WillmanTech S.L.
 
 [Trabajo desarrollado con IA](#trabajo-desarrollado-con-ia)
 
-# INTRODUCCIÓN {#introducción}
+# INTRODUCCIÓN 
 
 La empresa andaluza de servicios tecnológicos **"WillmanTech S.L."** acaba de finalizar la implantación de su infraestructura ERP/CRM para optimizar sus flujos de ventas y facturación en Odoo y busca la personalización del diseño de sus facturas de clientes y la habilitación de un pipeline de interoperabilidad y exportación.
 
-## Arquitectura {#arquitectura}
+## Arquitectura 
 
 En este caso se está utilizando la plataforma Docker con el despliegue mediante Docker Compose de los módulos de Odoo y base de datos de Postgres. 
 
@@ -40,9 +40,9 @@ En Odoo se han activado los módulos:
 * Facturación  
 * Inventario
 
-# 1.Guia de Instalación {#1.guia-de-instalación}
+# 1.Guia de Instalación 
 
-# 2.Seguridad y control de Acceso {#2.seguridad-y-control-de-acceso}
+# 2.Seguridad y control de Acceso
 
 En este momento el sistema cuenta con estos roles cada uno con su contraseña:
 
@@ -59,7 +59,7 @@ En este momento el sistema cuenta con estos roles cada uno con su contraseña:
 * **Permiso:** Tiene acceso total. Puede ver todos los registros, aprobar descuentos especiales, gestionar tarifas, y modificar la configuración principal del módulo (como los ajustes de cotizaciones). 
 
 
-# 3.Procedimiento de Backup y Restauración {#3.procedimiento-de-backup-y-restauración}
+# 3.Procedimiento de Backup y Restauración
 
 Para hacer un respaldo de la base de datos de Postgres optando por usar comando se usa el comando *pg\_dump* con esta estructura:   
 ***sudo \-u postgres pg\_dump NOMBRE\_BD \> /ruta/de/respaldo/NOMBRE\_BD.sql***
@@ -71,7 +71,7 @@ psql nombre\_nueva\_bd \< /ruta/al/archivo/dump.sql
 
 (También se dispone de estas funciones desde la Interfaz de Odoo)
 
-# 4.Flujo Operativo de Facturación e Informes {#4.flujo-operativo-de-facturación-e-informes}
+# 4.Flujo Operativo de Facturación e Informes
 
 Con un presupuesto y venta hecha , volviendo a **Ventas** podremos confirmar la entrega seleccionando **crear factura**.Tras esto, se selecciona la opción de **Factura normal** y con los datos se podrá **confirmar** la factura. El sistema de generación es el siguiente:
 
@@ -86,21 +86,21 @@ El motor de plantillas nativo de Odoo, QWeb, toma como entrada los registros pur
 
 El resultado de esta primera fase es un documento de texto plano.
 
-## Fase 2: El Motor de Renderizado Gráfico (wkhtmltopdf) {#fase-2:-el-motor-de-renderizado-gráfico-(wkhtmltopdf)}
+## Fase 2: El Motor de Renderizado Gráfico (wkhtmltopdf) 
 
 El servidor de aplicaciones Odoo transfiere el código HTML completo generado por QWeb a un subproceso del sistema que invoca al componente binario ejecutable wkhtmltopdf.
 
 1. wkhtmltopdf inicializa una instancia sin interfaz gráfica (headless) basada en el motor de renderizado WebKit.  
 2. El motor WebKit abre virtualmente el código HTML y procesa los estilos CSS, las fuentes tipográficas y las tablas, calculando la disposición exacta de los píxeles y las rupturas de página físicas necesarias para el formato de impresión de hojas A4.
 
-## Fase 3: Salida Binaria y Almacenamiento {#fase-3:-salida-binaria-y-almacenamiento}
+## Fase 3: Salida Binaria y Almacenamiento 
 
 Una vez que el motor WebKit ha dibujado el documento en la memoria virtual, wkhtmltopdf vectoriza los textos, imágenes y tablas, exportándolos en un flujo de datos binario estructurado bajo las especificaciones del formato PDF (Portable Document Format).  
 Este archivo final es capturado por Odoo, almacenado temporalmente en el caché del filestore y enviado de vuelta al navegador web del usuario, quien visualiza de manera inmediata el informe listo para su descarga, impresión física o remisión automatizada por correo electrónico al cliente de WillmanTech S.L.
 
-# Apéndices {#apéndices}
+# Apéndices
 
-## Trabajo desarrollado con IA {#trabajo-desarrollado-con-ia}
+## Trabajo desarrollado con IA
 
 * PROMPT:Configuración de roles en Odoo ejemplo  
 * PROMPT: Comando para respaldar y restaurar la base de datos relacional y los almacenes de datos asociados en odoo  
