@@ -1,0 +1,49 @@
+<template id="report_invoice_document_custom">
+    <t t-call="web.external_layout">
+        <div class="page">
+            <h2>WillmanTech S.L.</h2>
+            <h2>Factura N.º: <span t-field="doc.name" /></h2>
+            <p>Fecha de emisión: <span t-field="doc.date" /></p>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Descripción</th>
+                        <th class="text-right">Cantidad</th>
+                        <th class="text-right">Precio Unitario</th>
+                        <t t-if="display_discount">
+                            <th class="text-right">Descuento (%)</th>
+                        </t>
+                        <th class="text-right">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="doc.invoice_line_ids" t-as="line">
+                        <tr>
+                            <td>
+                                <span t-field="line.name" />
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.quantity" />
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.price_unit" />
+                            </td>
+                            <t t-if="display_discount">
+                                <td class="text-right">
+                                    <span t-field="line.discount" />
+                                </td>
+                            </t>
+                            <td class="text-right">
+                                <span t-field="line.price_subtotal" />
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+            <div class="text-right" style="margin-top: 20px; font-size: 1.2em;">
+                <strong>Total Neto: </strong>
+                <span t-field="doc.amount_total" />
+            </div>
+        </div>
+    </t>
+</template>
